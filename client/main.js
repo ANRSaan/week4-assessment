@@ -17,5 +17,7 @@ const getFortune = () => {
     })
 }
 
+
+
 complimentBtn.addEventListener('click', getCompliment)
 fortuneBtn.addEventListener('click', getFortune)
