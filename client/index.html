@@ -11,14 +11,21 @@
       <label for="emotionSelect">How're you feeling?</label>
       <br>
       <select name="Bob" id="emotionSelect">
-        <option value="fairly mellow">Fairly Mellow</option>
-        <option value="fairly mellow">Held up entirely through stress</option>
-        <option value="fairly mellow">Generally kinda worried</option>
-        <option value="fairly mellow">Deliriously joyful</option>
-        <option value="fairly mellow">Some mysterious 5th emotion</option>
+        <option value=""></option>
+        <option value=">Fairly Mellow">Fairly Mellow</option>
+        <option value=">Held up entirely through stress">Held up entirely through stress</option>
+        <option value="Generally kinda worried">Generally kinda worried</option>
+        <option value="Deliriously joyful">Deliriously joyful</option>
+        <option value="Some mysterious 5th emotion">Some mysterious 5th emotion</option>
       </select>
+      <p>And what can we call you?</p>
+      <input id="firstName" type="text" placeholder="First Name">
       <br><br>
-      <input type="submit" value="Submit To Your Emotion">
+      <input id="lastName" type="text" placeholder="Last Name">
+      <p>Finally, what's a cool name we can call you instead?</p>
+      <input id="userName" type="text" placeholder="Username">
+      <br><br>
+      <input id="emotionButton" type="submit" value="Submit To Your Emotion">
     </section>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

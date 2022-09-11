@@ -1,3 +1,6 @@
+let users = require('./db.json')
+let userID = 0
+
 module.exports = {
 
     getCompliment: (req, res) => {
@@ -17,6 +20,26 @@ module.exports = {
         let randomFortune = fortunes[randomIndex];
 
         res.status(200).send(randomFortune);
-    }
+    },
+
+    getProfile: (req, res) => {
+        const { emotion, firstName, lastName, userName} = req.body
+        userID++
+
+        let newUser = {
+            
+            id: userID,
+            userName,
+            firstName,
+            lastName,
+            emotion
+        }
+
+        /* Add in if statement to check for existing user.  If it doesn't 
+        exist, execute following code.  If not, send a 400 error saying the 
+        user already exists and don't push or return the data. */
+        users.push(newUser)
+        res.status(200).send(users)
+    },
 
 }
