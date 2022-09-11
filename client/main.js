@@ -206,6 +206,15 @@ const changeHandler = (event) => {
     let userName = newUserName.value
     let emotion = newEmotion.value
 
+    if (userName = ''){
+        alert("Please enter a username")
+        return
+    }
+    if (emotion = ''){
+        alert("Please enter an emotive unit")
+        return
+    }
+
     changeEmotion(userName, emotion)
 
     newUserName.value = ''
@@ -217,6 +226,11 @@ const deleteHandler = (event) => {
     event.preventDefault()
 
     let userName = document.getElementById('imputDelete')
+
+    if (userName = ''){
+        alert("Please enter a username")
+        return
+    }
 
     deleteProfile(userName.value)
 
