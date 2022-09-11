@@ -50,7 +50,21 @@ module.exports = {
     },
 
     changeEmotion: (req, res) => {
+
+        const { emotion, userName } = req.body
+        let index = users.findIndex(elem => elem.userName === req.params.userName)
+        users[index].emotion = emotion
+
+        res.status(200).send(users[index])
+    },
+
+    deleteProfile: (req, res) => {
         
+        const { userName } = req.body
+
+        let index = users.findIndex(elem => elem.userName === req.params.userName)
+
+        res.status(200).send()
     }
 
 }

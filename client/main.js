@@ -1,72 +1,82 @@
 const complimentBtn = document.getElementById("complimentButton")
 const fortuneBtn = document.getElementById("fortuneButton")
 const emotionBtn = document.getElementById("emotionButton")
+const emotionBtn2 = document.getElementById("emotionButton2")
+const deleteBtn = document.getElementById("deleteButton")
 
-const newSelectProducer = () => {
-    let profDiv = document.getElementById('profileDiv')
+// const newSelectProducer = () => {
+//     let profDiv = document.getElementById('profileDiv')
 
-    let changeText = document.createElement('p')
-    changeText.textContent = "If you are now feeling a different emotion, please select the proper option below:"
-    profDiv.appendChild(changeText)
+//     let changeText = document.createElement('p')
+//     changeText.textContent = "If you are now feeling a different emotion, please select the proper option below:"
+//     profDiv.appendChild(changeText)
 
-    let newSelect = document.createElement('select')
-    newSelect.setAttribute('id', "newEmotionSelect")
-    profDiv.appendChild(newSelect)
+//     let newSelect = document.createElement('select')
+//     newSelect.setAttribute('id', "newEmotionSelect")
+//     profDiv.appendChild(newSelect)
 
-    let blankOption = document.createElement('option')
-    let mellowOption = document.createElement('option')
-    let stressedOption = document.createElement('option')
-    let worriedOption = document.createElement('option')
-    let joyfulOption = document.createElement('option')
-    let fifthOption = document.createElement('option')
-    let breakBr = document.createElement('br')
-    let breakBr2 = document.createElement('br')
-    let emotionBtn2 = document.createElement('input')
+//     let blankOption = document.createElement('option')
+//     let mellowOption = document.createElement('option')
+//     let stressedOption = document.createElement('option')
+//     let worriedOption = document.createElement('option')
+//     let joyfulOption = document.createElement('option')
+//     let fifthOption = document.createElement('option')
+//     let breakBr = document.createElement('br')
+//     let breakBr2 = document.createElement('br')
+//     let emotionBtn2 = document.createElement('input')
 
 
-    emotionBtn2.type = 'submit'
+//     emotionBtn2.type = 'submit'
+//     emotionBtn2.setAttribute('id', 'emotionButton2')
     
 
-    blankOption.value = ''
-    mellowOption.value = "Fairly Mellow"
-    stressedOption.value = "Held up entirely through stress"
-    worriedOption.value = "Generally kinda worried"
-    joyfulOption.value = "Deliriously joyful"
-    fifthOption.value = "Some mysterious 5th emotion"
-    emotionBtn2.value = 'I now have different feels'
+//     blankOption.value = ''
+//     mellowOption.value = "Fairly Mellow"
+//     stressedOption.value = "Held up entirely through stress"
+//     worriedOption.value = "Generally kinda worried"
+//     joyfulOption.value = "Deliriously joyful"
+//     fifthOption.value = "Flabnastically constraculated"
+//     emotionBtn2.value = 'I now have different feels'
 
-    mellowOption.textContent = "Fairly Mellow"
-    stressedOption.textContent = "Held up entirely through stress"
-    worriedOption.textContent = "Generally kinda worried"
-    joyfulOption.textContent = "Deliriously joyful"
-    fifthOption.textContent = "Some mysterious 5th emotion"
+//     mellowOption.textContent = "Fairly Mellow"
+//     stressedOption.textContent = "Held up entirely through stress"
+//     worriedOption.textContent = "Generally kinda worried"
+//     joyfulOption.textContent = "Deliriously joyful"
+//     fifthOption.textContent = "Some mysterious 5th emotion"
 
-    newSelect.appendChild(blankOption)
-    newSelect.appendChild(mellowOption)
-    newSelect.appendChild(stressedOption)
-    newSelect.appendChild(worriedOption)
-    newSelect.appendChild(joyfulOption)
-    newSelect.appendChild(fifthOption)
-    profDiv.appendChild(breakBr)
-    profDiv.appendChild(breakBr2)
-    profDiv.appendChild(emotionBtn2)
-}
+//     newSelect.appendChild(blankOption)
+//     newSelect.appendChild(mellowOption)
+//     newSelect.appendChild(stressedOption)
+//     newSelect.appendChild(worriedOption)
+//     newSelect.appendChild(joyfulOption)
+//     newSelect.appendChild(fifthOption)
+//     profDiv.appendChild(breakBr)
+//     profDiv.appendChild(breakBr2)
+//     profDiv.appendChild(emotionBtn2)
+// }
 
-const deleteProducer = () => {
-    let profDiv = document.getElementById('profileDiv')
+// const deleteProducer = () => {
+//     let profDiv = document.getElementById('profileDiv')
 
-    let deleteText = document.createElement('p')
-    let deleteBtn = document.createElement('input')
+//     let deleteText = document.createElement('p')
+//     let deleteInput = document.createElement('input')
+//     let deleteBtn = document.createElement('input')
 
-    deleteBtn.type = 'submit'
+//     deleteText.textContent = "If you would rather not exist, press button below:"
+
+//     deleteInput.type = 'text'
+//     deleteInput.setAttribute('id', 'deleteInput')
+//     deleteInput.placeholder = 'User Name'
+
+//     deleteBtn.type = 'submit'
+//     deleteBtn.setAttribute('id', 'deleteButton')
+//     deleteBtn.value = "Untether me from your coil"
     
-    deleteText.textContent = "If you would rather not exist, press button below:"
-    deleteBtn.value = "Untether me from your coil"
+//     profDiv.appendChild(deleteText)
+//     profDiv.appendChild(deleteInput)
+//     profDiv.appendChild(deleteBtn)
 
-    profDiv.appendChild(deleteText)
-    profDiv.appendChild(deleteBtn)
-
-}
+// }
 
 const infoProducer = data => {
     let profDiv = document.getElementById('profileDiv')
@@ -80,6 +90,8 @@ const infoProducer = data => {
     let firstNameLi = document.createElement('li')
     let lastNameLi = document.createElement('li')
     let emotionLi = document.createElement('li')
+
+    userLi.setAttribute('id', `${data.userName}`)
 
     profText.textContent = "Now you're part of the SYSTEM, man."
     profText2.textContent = "Here's your info:"
@@ -119,28 +131,33 @@ const getProfile = (body) => {
     axios.post("http://localhost:4000/api/profile/", body)
         .then(res => {
             infoProducer(res.data)
-            newSelectProducer()
-            deleteProducer()
         })
         .catch(() => {
             alert('User already exists!')
         })
 }
 
-const changeEmotion = (emotion) => {
-    axios.put(`http://localhost:4000/api/profile/${emotion}`)
+const changeEmotion = (userName, emotion) => {
+    axios.put(`http://localhost:4000/api/profile/${userName}`, {emotion})
         .then(res => {
             infoProducer(res.data)
-            newSelectProducer()
-            deleteProducer()
         })
         .catch((err) => {
             console.log(err)
         })
 }
 
+const deleteProfile = (userName) => {
+    axios.delete(`http://localhost:4000/api/profile/${userName}`)
+        .then(res => {
+            alert("User Deleted")
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
+}
 
-const sumbitHandler = (event) => {
+const profileHandler = (event) => {
     event.preventDefault()
 
     let emotion = document.getElementById("emotionSelect")
@@ -181,8 +198,34 @@ const sumbitHandler = (event) => {
     userName.value = ''
 }
 
+const changeHandler = (event) => {
+    event.preventDefault()
+    let newEmotion = document.getElementById('emotionSelect2')
+    let newUserName = document.getElementById('userNameEmo')
 
+    let userName = newUserName.value
+    let emotion = newEmotion.value
+
+    changeEmotion(userName, emotion)
+
+    newUserName.value = ''
+    newEmotion.value = ''
+
+}
+
+const deleteHandler = (event) => {
+    event.preventDefault()
+
+    let userName = document.getElementById('imputDelete')
+    console.log(userName)
+
+    deleteProfile(userName.value)
+
+    userName.value = ''
+}
 
 complimentBtn.addEventListener('click', getCompliment)
 fortuneBtn.addEventListener('click', getFortune)
-emotionBtn.addEventListener('click', sumbitHandler)
+emotionBtn.addEventListener('click', profileHandler)
+emotionBtn2.addEventListener('click', changeHandler)
+deleteBtn.addEventListener('click', deleteHandler)
