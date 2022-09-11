@@ -14,7 +14,7 @@ const { getCompliment, getFortune, getProfile, changeEmotion, deleteProfile } = 
 app.get("/api/compliment", getCompliment);
 app.get("/api/fortune", getFortune);
 app.post("/api/profile", getProfile);
-app.put("/api/profile/:emotion", changeEmotion);
+app.put("/api/profile/:userName", changeEmotion);
 app.delete("/api/profile/:userName", deleteProfile)
 
 app.listen(4000, () => console.log("Server running on 4000"));

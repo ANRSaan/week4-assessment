@@ -55,7 +55,13 @@ module.exports = {
         let index = users.findIndex(elem => elem.userName === req.params.userName)
         users[index].emotion = emotion
 
-        res.status(200).send(users[index])
+        for (i = 0; users.length; i++){
+            if (users.Name === userName){
+                res.status(200).send(users[index])
+                return
+            }
+        }
+        res.status(400).send()
     },
 
     deleteProfile: (req, res) => {
@@ -63,6 +69,8 @@ module.exports = {
         const { userName } = req.body
 
         let index = users.findIndex(elem => elem.userName === req.params.userName)
+
+        delete users[index]
 
         res.status(200).send()
     }

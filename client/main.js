@@ -142,8 +142,8 @@ const changeEmotion = (userName, emotion) => {
         .then(res => {
             infoProducer(res.data)
         })
-        .catch((err) => {
-            console.log(err)
+        .catch(() => {
+            alert('User does not exist!')
         })
 }
 
@@ -153,7 +153,7 @@ const deleteProfile = (userName) => {
             alert("User Deleted")
         })
         .catch ((err) => {
-            console.log(err)
+            alert("User not found!")
         })
 }
 
@@ -217,7 +217,6 @@ const deleteHandler = (event) => {
     event.preventDefault()
 
     let userName = document.getElementById('imputDelete')
-    console.log(userName)
 
     deleteProfile(userName.value)
 
