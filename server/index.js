@@ -14,5 +14,6 @@ const { getCompliment, getFortune, getProfile } = require('./controller')
 app.get("/api/compliment", getCompliment);
 app.get("/api/fortune", getFortune);
 app.post("/api/profile", getProfile);
+app.put("./api/profile/:emotion");
 
 app.listen(4000, () => console.log("Server running on 4000"));

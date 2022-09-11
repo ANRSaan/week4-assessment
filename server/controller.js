@@ -38,8 +38,19 @@ module.exports = {
         /* Add in if statement to check for existing user.  If it doesn't 
         exist, execute following code.  If not, send a 400 error saying the 
         user already exists and don't push or return the data. */
+        // console.log(newUser.userName)
+        for (i = 0; i < users.length; i++){
+            if (users[i].userName === newUser.userName){
+                res.status(400).send()
+                return
+            }
+        }
         users.push(newUser)
-        res.status(200).send(users)
+        res.status(200).send(newUser)
     },
+
+    changeEmotion: (req, res) => {
+        
+    }
 
 }
