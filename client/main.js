@@ -78,7 +78,7 @@ const deleteProfile = (userName) => {
         .then(res => {
             alert("User Deleted")
         })
-        .catch ((err) => {
+        .catch (() => {
             alert("User not found!")
         })
 }
@@ -131,12 +131,14 @@ const changeHandler = (event) => {
 
     let userName = newUserName.value
     let emotion = newEmotion.value
+    console.log(emotion)
+    console.log(userName)
 
-    if (userName = ''){
+    if (userName === ''){
         alert("Please enter a username")
         return
     }
-    if (emotion = ''){
+    if (emotion === ''){
         alert("Please enter an emotive unit")
         return
     }
