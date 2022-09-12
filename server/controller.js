@@ -35,10 +35,6 @@ module.exports = {
             emotion
         }
 
-        /* Add in if statement to check for existing user.  If it doesn't 
-        exist, execute following code.  If not, send a 400 error saying the 
-        user already exists and don't push or return the data. */
-        // console.log(newUser.userName)
         for (i = 0; i < users.length; i++){
             if (users[i].userName === newUser.userName){
                 res.status(400).send()
@@ -65,12 +61,9 @@ module.exports = {
     },
 
     deleteProfile: (req, res) => {
-        
-        const { userName } = req.body
-
         let index = users.findIndex(elem => elem.userName === req.params.userName)
 
-        delete users[index]
+        users.splice(users[index], 1)
 
         res.status(200).send()
     }

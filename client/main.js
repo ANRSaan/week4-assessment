@@ -75,7 +75,7 @@ const changeEmotion = (userName, emotion) => {
 
 const deleteProfile = (userName) => {
     axios.delete(`http://localhost:4000/api/profile/${userName}`)
-        .then(res => {
+        .then(() => {
             alert("User Deleted")
         })
         .catch (() => {
